@@ -17,11 +17,11 @@ class instructor extends person {
         this.favLanguage = attributes.favLanguage;
         this.catchPhrase = attributes.catchPhrase;
     }
-    demo() {
-        return `Today we are learning about ${this.subject}.`;
+    demo(subject) {
+        return `Today we are learning about ${subject}.`;
     }
-    grade() {
-        return `${this.name} receives a perfect score on ${this.subject}.`;
+    grade(student,subject) {
+        return `${student} receives a perfect score on ${subject}.`;
     }
 }
 class student extends person {
@@ -32,25 +32,85 @@ class student extends person {
         this.favSubjects = attributes.favSubjects;
     }
     listsSubjects() {
-        return `${this.favSubjects}.`
+        let favorites=[];
+        for (let i = 0; i < this.favSubjects.length; i++) {
+            favorites.push(this.favSubjects[i]);
+        }
+        return favorites;
     }
-    PRAssignment() {
-        return `${this.name} has submitted a PR for ${this.subject}`;
+    PRAssignment(student,subject) {
+        return `${student} has submitted a PR for ${subject}`;
     }
-    sprintChallenge() {
-        return `${this.name} has begun sprint challenge on ${this.subject}.`;
+    sprintChallenge(student,subject) {
+        return `${student} has begun sprint challenge on ${subject}.`;
     }
 }
-class ProjectManagers extends instructor {
+class ProjectManager extends instructor {
     constructor(attributes) {
         super(attributes)
         this.gradClassName = attributes.gradClassName;
         this.favInstructor = attributes.favInstructor;
     }
-    standUp() {
-        return `${this.name} announces to ${this.channel}, @channel standy times!`
+    standUp(channel) {
+        return `${this.name} announces to ${channel}, @channel standy times!`
     }
-    debugsCode() {
-        return `${this.name} debugs ${this.name}'s code on ${this.subject}.`
+    debugsCode(StudentName,subject) {
+        return `${this.name} debugs ${StudentName}'s code on ${subject}.`
     }
 }
+
+const Josh = new instructor({
+    name: 'Josh',
+    age: 25,
+    location: 'Utah',
+    gender: 'Male',
+    specialty: 'Being perfect',
+    favLanguage: 'Javascript',
+    catchPhrase: 'BANJO SOUNDS'
+});
+
+const Brennon = new student({
+    name: 'Brennon',
+    age: 19,
+    location: 'Utah',
+    gender: 'Male',
+    previousBackground: 'None',
+    className: 'Web18',
+    favSubjects: ['Javascript', 'Music', 'Basketball']
+});
+const Rodger = new student({
+    name: 'Rodger',
+    age: 42,
+    location: 'Arkansas',
+    gender: 'Male',
+    previousBackground: '"Knows how to turn on computer"',
+    className: 'Web18',
+    favSubjects: ['HTML', 'Running', 'Cooking']
+});
+const Pete = new student({
+    name: 'Pete',
+    age: 17,
+    location: 'California',
+    gender: 'Male',
+    previousBackground: 'Taught the instructor everything he knows',
+    className: 'Web18',
+    favSubjects: ['HTML', 'CSS', 'JavaScript']
+});
+
+const Bryce = new ProjectManager({
+    name: 'Bryce',
+    age: 23,
+    location: 'Alaska',
+    gender: 'Female',
+    gradClassName: 'Web12',
+    favInstructor: 'Greg'
+});
+
+console.log(Brennon.speak());
+console.log(Josh.demo('Javascript IV'));
+console.log(Josh.grade('Brennon','Sprint-Challenge: Javascript'));
+console.log(Pete.listsSubjects());
+console.log(Rodger.PRAssignment('Rodger','The assingment'));
+console.log(Pete.sprintChallenge('Pete','Javascript'));
+console.log(Bryce.standUp('web18_bryce'))
+console.log(Bryce.debugsCode('Brennon','Javascript'))
