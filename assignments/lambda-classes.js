@@ -30,6 +30,7 @@ class student extends person {
         this.previousBackground = attributes.previousBackground;
         this.className = attributes.className;
         this.favSubjects = attributes.favSubjects;
+        this.grade = attributes.grade;
     }
     listsSubjects() {
         let favorites=[];
@@ -43,6 +44,13 @@ class student extends person {
     }
     sprintChallenge(student,subject) {
         return `${student} has begun sprint challenge on ${subject}.`;
+    }
+    graduate(student) {
+        if (this.grade >= 70) {
+            return `${student} is going to graduate!!`
+        } else {
+            return `${student} is going to have to retake some work.`
+        }
     }
 }
 class ProjectManager extends instructor {
@@ -76,7 +84,8 @@ const Brennon = new student({
     gender: 'Male',
     previousBackground: 'None',
     className: 'Web18',
-    favSubjects: ['Javascript', 'Music', 'Basketball']
+    favSubjects: ['Javascript', 'Music', 'Basketball'],
+    grade: 90
 });
 const Rodger = new student({
     name: 'Rodger',
@@ -85,7 +94,8 @@ const Rodger = new student({
     gender: 'Male',
     previousBackground: '"Knows how to turn on computer"',
     className: 'Web18',
-    favSubjects: ['HTML', 'Running', 'Cooking']
+    favSubjects: ['HTML', 'Running', 'Cooking'],
+    grade: 68
 });
 const Pete = new student({
     name: 'Pete',
@@ -94,7 +104,8 @@ const Pete = new student({
     gender: 'Male',
     previousBackground: 'Taught the instructor everything he knows',
     className: 'Web18',
-    favSubjects: ['HTML', 'CSS', 'JavaScript']
+    favSubjects: ['HTML', 'CSS', 'JavaScript'],
+    grade: 100
 });
 
 const Bryce = new ProjectManager({
@@ -114,3 +125,5 @@ console.log(Rodger.PRAssignment('Rodger','The assingment'));
 console.log(Pete.sprintChallenge('Pete','Javascript'));
 console.log(Bryce.standUp('web18_bryce'))
 console.log(Bryce.debugsCode('Brennon','Javascript'))
+
+console.log(Brennon.graduate('Brennon'))
